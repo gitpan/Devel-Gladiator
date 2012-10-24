@@ -9,3 +9,4 @@ ppport.h
 README
 t/Devel-Gladiator.t
 t/padwalker.t
+META.json                                Module JSON meta-data (added by MakeMaker)

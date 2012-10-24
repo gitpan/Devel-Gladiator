@@ -1,13 +1,21 @@
---- #YAML:1.0
-name:                Devel-Gladiator
-version:             0.01
-abstract:            Walk Perl's arena
-license:             ~
-author:              
-    - Artur Bergman <sky@apple.com>
-generated_by:        ExtUtils::MakeMaker version 6.44
-distribution_type:   module
-requires:     
+---
+abstract: "Walk Perl's arena"
+author:
+  - 'Artur Bergman <sky@apple.com>'
+build_requires:
+  ExtUtils::MakeMaker: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
+dynamic_config: 1
+generated_by: 'ExtUtils::MakeMaker version 6.6302, CPAN::Meta::Converter version 2.120921'
+license: unknown
 meta-spec:
-    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
-    version: 1.3
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Devel-Gladiator
+no_index:
+  directory:
+    - t
+    - inc
+requires: {}
+version: 0.02
