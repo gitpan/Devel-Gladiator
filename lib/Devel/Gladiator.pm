@@ -21,7 +21,7 @@ our %EXPORT_TAGS = ( 'all' => [ qw(
 
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 our $XS_VERSION = $VERSION;
 $VERSION = eval $VERSION;  # see L<perlmodstyle>
 
@@ -42,7 +42,7 @@ sub arena_table {
     my $ct = arena_ref_counts();
     my $ret;
     $ret .= "ARENA COUNTS:\n";
-    foreach my $k (sort {$ct->{$b} <=> $ct->{$a}} keys %$ct) {
+    foreach my $k (sort { $ct->{$b} <=> $ct->{$a} || $a cmp $b } keys %$ct) {
         $ret .= sprintf(" %4d $k\n", $ct->{$k});
     }
     return $ret;
