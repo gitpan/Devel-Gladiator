@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 package Devel::Gladiator;
-# git description: v0.05-10-g63f0720
-$Devel::Gladiator::VERSION = '0.06';
+# git description: v0.06-9-g25ce2f6
+$Devel::Gladiator::VERSION = '0.07';
 # ABSTRACT: Walk Perl's arena
 # KEYWORDS: development debugging memory allocation usage leaks cycles arena
 
@@ -59,7 +59,7 @@ Devel::Gladiator - Walk Perl's arena
 
 =head1 VERSION
 
-version 0.06
+version 0.07
 
 =head1 SYNOPSIS
 
@@ -107,6 +107,11 @@ a certain point.
 =head2 arena_table
 
 Formats a string table based on C<arena_ref_counts> suitable for printing.
+
+=head1 LIMITATIONS
+
+This code may not work on perls 5.6.x and 5.8.x if L<PadWalker> is installed.
+(Patches gratefully accepted!)
 
 =head1 SEE ALSO
 
