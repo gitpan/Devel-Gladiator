@@ -5,7 +5,7 @@ use warnings;
 
 use 5.006;
 
-use ExtUtils::MakeMaker ;
+use ExtUtils::MakeMaker 0;
 
 
 
@@ -34,7 +34,7 @@ my %WriteMakefileArgs = (
     "Scalar::Util" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.05",
+  "VERSION" => "0.06",
   "test" => {
     "TESTS" => "t/*.t"
   }

@@ -31,10 +31,11 @@ no_index:
   directory:
     - t
     - xt
+    - inc
 provides:
   Devel::Gladiator:
     file: lib/Devel/Gladiator.pm
-    version: '0.05'
+    version: '0.06'
 requires:
   Exporter: '0'
   XSLoader: '0'
@@ -46,7 +47,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Devel-Gladiator
   homepage: https://github.com/karenetheridge/Devel-Gladiator
   repository: https://github.com/karenetheridge/Devel-Gladiator.git
-version: '0.05'
+version: '0.06'
 x_Dist_Zilla:
   perl:
     version: '5.021003'
@@ -116,6 +117,20 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::Git::GatherDir
       config:
+        Dist::Zilla::Plugin::GatherDir:
+          exclude_filename:
+            - Makefile.PL
+            - README.md
+            - README.pod
+            - ppport.h
+            - LICENSE
+            - CONTRIBUTING
+          exclude_match:
+            - ^inc/
+          follow_symlinks: '0'
+          include_dotfiles: '0'
+          prefix: ''
+          root: .
         Dist::Zilla::Plugin::Git::GatherDir:
           include_untracked: '0'
         Dist::Zilla::Role::Git::Repo:
@@ -535,6 +550,13 @@ x_Dist_Zilla:
       version: '5.020'
     -
       class: Dist::Zilla::Plugin::CopyFilesFromRelease
+      config:
+        Dist::Zilla::Plugin::CopyFilesFromRelease:
+          filename:
+            - ppport.h
+            - LICENSE
+            - CONTRIBUTING
+          match: []
       name: '@Author::ETHER/CopyFilesFromRelease'
       version: '0.002'
     -
@@ -558,6 +580,7 @@ x_Dist_Zilla:
             - Changes
             - README.md
             - README.pod
+            - ppport.h
             - LICENSE
             - CONTRIBUTING
           allow_dirty_match: []
@@ -572,7 +595,7 @@ x_Dist_Zilla:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v0.05
+          tag: v0.06
           tag_format: v%v%t
           tag_message: v%v%t
           time_zone: local
@@ -605,14 +628,6 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ConfirmRelease
       name: '@Author::ETHER/ConfirmRelease'
-      version: '5.020'
-    -
-      class: Dist::Zilla::Plugin::Prereqs
-      config:
-        Dist::Zilla::Plugin::Prereqs:
-          phase: develop
-          type: requires
-      name: DevelopRequires
       version: '5.020'
     -
       class: Dist::Zilla::Plugin::OnlyCorePrereqs
@@ -685,5 +700,6 @@ x_contributors:
   - "יובל קוג'מן (Yuval Kogman) <nothingmuch@woobling.org>"
   - 'Jesse Luehrs <doy@tozt.net>'
   - 'Brad Fitzpatrick <brad@danga.com>'
+  - 'Ed J <mohawk2@users.noreply.github.com>'
   - 'Curtis Brandt <curtisjbrandt@gmail.com>'
 x_permissions_from_module: Devel::Gladiator

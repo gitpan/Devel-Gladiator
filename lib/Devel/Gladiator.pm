@@ -1,8 +1,8 @@
 use strict;
 use warnings;
 package Devel::Gladiator;
-# git description: v0.04-13-g9daf2ec
-$Devel::Gladiator::VERSION = '0.05';
+# git description: v0.05-10-g63f0720
+$Devel::Gladiator::VERSION = '0.06';
 # ABSTRACT: Walk Perl's arena
 # KEYWORDS: development debugging memory allocation usage leaks cycles arena
 
@@ -59,7 +59,7 @@ Devel::Gladiator - Walk Perl's arena
 
 =head1 VERSION
 
-version 0.05
+version 0.06
 
 =head1 SYNOPSIS
 
@@ -72,6 +72,12 @@ version 0.05
   }
 
   warn arena_table(); # prints counts keyed by class
+
+  # how to spot new entries in the arena after running some code
+  my %dump1 = map { ("$_" => $_) } walk_arena();
+  # do something
+  my %dump2 = map { $dump1{$_} ? () : ("$_" => $_) } walk_arena();
+  use Devel::Peek; Dump \%dump2;
 
 =head1 DESCRIPTION
 
@@ -128,7 +134,7 @@ the same terms as the Perl 5 programming language system itself.
 
 =head1 CONTRIBUTORS
 
-=for stopwords Karen Etheridge יובל קוג'מן (Yuval Kogman) Jesse Luehrs Brad Fitzpatrick Curtis Brandt
+=for stopwords Karen Etheridge יובל קוג'מן (Yuval Kogman) Jesse Luehrs Brad Fitzpatrick Ed J Curtis Brandt
 
 =over 4
 
@@ -147,6 +153,10 @@ Jesse Luehrs <doy@tozt.net>
 =item *
 
 Brad Fitzpatrick <brad@danga.com>
+
+=item *
+
+Ed J <mohawk2@users.noreply.github.com>
 
 =item *
 

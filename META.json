@@ -26,7 +26,8 @@
    "no_index" : {
       "directory" : [
          "t",
-         "xt"
+         "xt",
+         "inc"
       ]
    },
    "prereqs" : {
@@ -37,7 +38,7 @@
       },
       "develop" : {
          "recommends" : {
-            "Dist::Zilla::PluginBundle::Author::ETHER" : "0.075"
+            "Dist::Zilla::PluginBundle::Author::ETHER" : "0.076"
          },
          "requires" : {
             "Devel::PPPort" : "3.23",
@@ -111,12 +112,12 @@
             "Dist::Zilla::Plugin::Test::ReportPrereqs" : "0.019",
             "Dist::Zilla::Plugin::TestRelease" : "0",
             "Dist::Zilla::Plugin::UploadToCPAN" : "0",
-            "Dist::Zilla::PluginBundle::Author::ETHER" : "0.068",
-            "ExtUtils::MakeMaker::Dist::Zilla::Develop" : "0",
+            "Dist::Zilla::PluginBundle::Author::ETHER" : "0.076",
             "File::Spec" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
             "Pod::Coverage::TrustPod" : "0",
+            "Pod::Weaver::Section::Contributors" : "0.008",
             "Test::CPAN::Changes" : "0.19",
             "Test::CPAN::Meta" : "0",
             "Test::CleanNamespaces" : "0.15",
@@ -155,7 +156,7 @@
    "provides" : {
       "Devel::Gladiator" : {
          "file" : "lib/Devel/Gladiator.pm",
-         "version" : "0.05"
+         "version" : "0.06"
       }
    },
    "release_status" : "stable",
@@ -171,7 +172,7 @@
          "web" : "https://github.com/karenetheridge/Devel-Gladiator"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.021003"
@@ -261,6 +262,23 @@
          {
             "class" : "Dist::Zilla::Plugin::Git::GatherDir",
             "config" : {
+               "Dist::Zilla::Plugin::GatherDir" : {
+                  "exclude_filename" : [
+                     "Makefile.PL",
+                     "README.md",
+                     "README.pod",
+                     "ppport.h",
+                     "LICENSE",
+                     "CONTRIBUTING"
+                  ],
+                  "exclude_match" : [
+                     "^inc/"
+                  ],
+                  "follow_symlinks" : "0",
+                  "include_dotfiles" : "0",
+                  "prefix" : "",
+                  "root" : "."
+               },
                "Dist::Zilla::Plugin::Git::GatherDir" : {
                   "include_untracked" : "0"
                },
@@ -812,6 +830,16 @@
          },
          {
             "class" : "Dist::Zilla::Plugin::CopyFilesFromRelease",
+            "config" : {
+               "Dist::Zilla::Plugin::CopyFilesFromRelease" : {
+                  "filename" : [
+                     "ppport.h",
+                     "LICENSE",
+                     "CONTRIBUTING"
+                  ],
+                  "match" : []
+               }
+            },
             "name" : "@Author::ETHER/CopyFilesFromRelease",
             "version" : "0.002"
          },
@@ -842,6 +870,7 @@
                      "Changes",
                      "README.md",
                      "README.pod",
+                     "ppport.h",
                      "LICENSE",
                      "CONTRIBUTING"
                   ],
@@ -861,7 +890,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "v0.05",
+                  "tag" : "v0.06",
                   "tag_format" : "v%v%t",
                   "tag_message" : "v%v%t",
                   "time_zone" : "local"
@@ -907,17 +936,6 @@
          {
             "class" : "Dist::Zilla::Plugin::ConfirmRelease",
             "name" : "@Author::ETHER/ConfirmRelease",
-            "version" : "5.020"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Prereqs",
-            "config" : {
-               "Dist::Zilla::Plugin::Prereqs" : {
-                  "phase" : "develop",
-                  "type" : "requires"
-               }
-            },
-            "name" : "DevelopRequires",
             "version" : "5.020"
          },
          {
@@ -1011,6 +1029,7 @@
       "יובל קוג'מן (Yuval Kogman) <nothingmuch@woobling.org>",
       "Jesse Luehrs <doy@tozt.net>",
       "Brad Fitzpatrick <brad@danga.com>",
+      "Ed J <mohawk2@users.noreply.github.com>",
       "Curtis Brandt <curtisjbrandt@gmail.com>"
    ],
    "x_permissions_from_module" : "Devel::Gladiator"
